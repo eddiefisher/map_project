@@ -1,0 +1,72 @@
+body {
+	padding-top: 60px;
+}
+img {
+	max-width: none;
+}
+.about, .contact {
+	padding: 60px;
+	margin-bottom: 30px;
+	background-color: #eeeeee;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.about p, .contact p,
+.about span, .contact span {
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 30px;
+	color: inherit;
+}
+.about li, .contact li {
+	list-style: none;
+}
+
+#map_inline {
+  width: 900px;
+  height: 500px;
+  margin:auto;
+  border:1px;
+  border-style:solid;
+  border-color:#696969;
+  background-color: #000;
+}
+#map_visible {
+	width:940px;
+  height:400px;
+  margin:auto;
+  border:1px;
+  border-style:solid;
+  border-color:#696969;
+  background-color: #000;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+#map_visible table {
+	position: absolute;
+	margin-left: -33%;
+	left: 50%;
+	height: 200px;
+	top: -5%;
+}
+.modal-body {
+	max-height: 510px;
+	padding: 0px;
+	overflow: hidden;
+}
+.modal {
+	width: 900px;
+	margin: -260px 0 0 -450px;
+	outline: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.desctop {
+	display: none;
+}

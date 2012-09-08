@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GEO Maps</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/ZoomifyImageViewer.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    jQuery(function($) {
+      if ( $.browser.mobile = true ) {
+        $('.desctop').show();
+        $('.mobile').hide();
+      }
+      $('div#map_inline').bind('mousewheel', function(event, delta) {
+        var dir = delta > 0 ? 'Up' : 'Down';
+        if (dir == 'Up') {
+          Z.Viewport.zoom('out')
+          setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
+        };
+        if (dir == 'Down') {
+          Z.Viewport.zoom('in');
+          setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
+        };
+        return false;
+      });
+    });
+  })
+  </script>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="index.html">GEO Maps</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="zoomify.html">Zoomify</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Zoomify + LightBox</h1>
+    <div id="map_visible" class="desctop">
+      <a href="#myModal" role="button" data-toggle="modal">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><img src="maps/map001/TileGroup0/2-0-0.jpg" width="256" height="256" alt="2 0 0"></td>
+          <td><img src="maps/map001/TileGroup0/2-1-0.jpg" width="256" height="256" alt="2 1 0"></td>
+          <td><img src="maps/map001/TileGroup0/2-2-0.jpg" width="113" height="256" alt="2 2 0"></td>
+        </tr>
+        <tr>
+          <td><img src="maps/map001/TileGroup0/2-0-1.jpg" width="256" height="195" alt="2 0 1"></td>
+          <td><img src="maps/map001/TileGroup0/2-1-1.jpg" width="256" height="195" alt="2 1 1"></td>
+          <td><img src="maps/map001/TileGroup0/2-2-1.jpg" width="113" height="195" alt="2 2 1"></td>
+        </tr>
+      </table>
+      </a>
+    </div>
+    
+    <div id="map_visible" class="mobile">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><img src="maps/map001/TileGroup0/2-0-0.jpg" width="256" height="256" alt="2 0 0"></td>
+          <td><img src="maps/map001/TileGroup0/2-1-0.jpg" width="256" height="256" alt="2 1 0"></td>
+          <td><img src="maps/map001/TileGroup0/2-2-0.jpg" width="113" height="256" alt="2 2 0"></td>
+        </tr>
+        <tr>
+          <td><img src="maps/map001/TileGroup0/2-0-1.jpg" width="256" height="195" alt="2 0 1"></td>
+          <td><img src="maps/map001/TileGroup0/2-1-1.jpg" width="256" height="195" alt="2 1 1"></td>
+          <td><img src="maps/map001/TileGroup0/2-2-1.jpg" width="113" height="195" alt="2 2 1"></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-body">
+        <div id="map_inline"></div>
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+          Z.showImage("map_inline", "maps/map001", "zSkinPath=Skins/Old&zNavigatorVisible=1&zToolbarVisible=1&zLogoVisible=0&zSliderVisible=0&zFullPageVisible=0&zProgressVisible=0&zTooltipsVisible=0");
+        });
+        </script>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
