@@ -23,23 +23,12 @@ img {
 	list-style: none;
 }
 
-#map_inline {
-  width: 900px;
-  height: 500px;
-  margin:auto;
-  border:1px;
-  border-style:solid;
-  border-color:#696969;
-  background-color: #000;
-}
+
 #map_visible {
 	width:940px;
-  height:400px;
-  margin:auto;
-  border:1px;
-  border-style:solid;
-  border-color:#696969;
-  background-color: #000;
+	height:400px;
+	margin:auto;
+	background-color: #000;
 	text-align: center;
 	overflow: hidden;
 	position: relative;
@@ -51,14 +40,16 @@ img {
 	height: 200px;
 	top: -5%;
 }
-.modal-body {
-	max-height: 510px;
-	padding: 0px;
-	overflow: hidden;
+
+#map_inline {
+  width: 900px;
+  height: 500px;
+  margin:auto;
+  background-color: #000;
 }
 .modal {
 	width: 900px;
-	margin: -260px 0 0 -450px;
+	margin: 0;
 	outline: none;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -66,6 +57,32 @@ img {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+.modal-body {
+	padding: 0px;
+	max-height: none;
+	overflow: hidden;
+}
+.modal.fade {
+	-webkit-transition: opacity .2s linear, none;
+	-moz-transition: opacity .2s linear, none;
+	-ms-transition: opacity .2s linear, none;
+	-o-transition: opacity .2s linear, none;
+	transition: opacity .2s linear, none;
+	top: 50%;
+}
+.modal .close {
+	background: transparent url('../img/closeButton.png') no-repeat;
+	position: fixed;
+	width: 20px;
+	height: 20px;
+	z-index: 9999;
+	top: 0;
+	right: 0;
+	opacity: 1;
 }
 .desctop {
 	display: none;

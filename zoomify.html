@@ -9,26 +9,71 @@
   <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/ZoomifyImageViewer.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
+  // check mobile brouser
+  function is_android () {
+    var ua = navigator.userAgent.toLowerCase();
+    var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+    if(isAndroid) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   $(document).ready(function() {
-    jQuery(function($) {
-      if ( $.browser.mobile = true ) {
-        $('.desctop').show();
-        $('.mobile').hide();
-      }
-      $('div#map_inline').bind('mousewheel', function(event, delta) {
-        var dir = delta > 0 ? 'Up' : 'Down';
-        if (dir == 'Up') {
-          Z.Viewport.zoom('out')
-          setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
-        };
-        if (dir == 'Down') {
-          Z.Viewport.zoom('in');
-          setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
-        };
-        return false;
-      });
+    if ($.browser.mobile = true || !is_android()) {
+      $('.desctop').show();
+      $('.mobile').hide();
+    }
+    $('div#map_inline').bind('mousewheel', function(event, delta) {
+      var dir = delta > 0 ? 'Up' : 'Down';
+      if (dir == 'Up') {
+        Z.Viewport.zoom('out')
+        setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
+      };
+      if (dir == 'Down') {
+        Z.Viewport.zoom('in');
+        setTimeout(function() { Z.Viewport.zoom('stop') }, 50);
+      };
+      return false;
     });
-  })
+  });
+  // loading and resizing window
+  $(window).resize(function() {
+    var sizeWindowWidth = $(window).width()*80/100,
+        sizeWindowHeight = $(window).height()*80/100;
+    $('div#map_inline').width(sizeWindowWidth);
+    $('.modal').width(sizeWindowWidth);
+    $('div#map_inline').height(sizeWindowHeight);
+    $('.modal').height(sizeWindowHeight);
+    
+    var newMarginLeft = sizeWindowWidth / 2,
+        newMarginTop = sizeWindowHeight / 2;
+    $('.modal').css('margin', "-" + newMarginTop + "px 0 0 -" + newMarginLeft + "px");
+    
+    Z.Viewer.setSizeAndPosition(sizeWindowWidth, sizeWindowHeight, 0, 0, true);
+    
+    // closed button
+    $('.modal .close').css('top', ($(window).height() - sizeWindowHeight) / 2);
+    $('.modal .close').css('right', ($(window).width() - sizeWindowWidth) / 2);
+  });
+  $(document).ready(function() {
+    var sizeWindowWidth = $(window).width()*80/100,
+        sizeWindowHeight = $(window).height()*80/100;
+    $('div#map_inline').width(sizeWindowWidth);
+    $('.modal').width(sizeWindowWidth);
+    $('div#map_inline').height(sizeWindowHeight);
+    $('.modal').height(sizeWindowHeight);
+
+    var newMarginLeft = sizeWindowWidth / 2,
+        newMarginTop = sizeWindowHeight / 2;
+    $('.modal').css('margin', "-" + newMarginTop + "px 0 0 -" + newMarginLeft + "px");
+    
+    Z.showImage("map_inline", "maps/map001", "zSkinPath=Skins/Old&zNavigatorVisible=1&zToolbarVisible=1&zLogoVisible=0&zSliderVisible=0&zFullPageVisible=0&zProgressVisible=0&zTooltipsVisible=0");
+    
+    // closed button
+    $('.modal .close').css('top', ($(window).height() - sizeWindowHeight) / 2 + 2);
+    $('.modal .close').css('right', ($(window).width() - sizeWindowWidth) / 2 + 2);
+  });
   </script>
 </head>
 <body>
@@ -85,17 +130,11 @@
         </tr>
       </table>
     </div>
-    
-    <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-body">
-        <div id="map_inline"></div>
-        <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-          Z.showImage("map_inline", "maps/map001", "zSkinPath=Skins/Old&zNavigatorVisible=1&zToolbarVisible=1&zLogoVisible=0&zSliderVisible=0&zFullPageVisible=0&zProgressVisible=0&zTooltipsVisible=0");
-        });
-        </script>
-      </div>
-    </div>
+  </div>
+  <div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&nbsp;</button>
+    <div class="modal-body">
+      <div id="map_inline"></div></div>
   </div>
 </body>
 </html>
